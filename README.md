@@ -36,7 +36,7 @@ password
 # if all successful you will be meet with the 'mysql>' command-line
 ```
 
-> in order to view data stored within the database do use the following commands
+> in order to view data stored within the database use the following commands
 
 ```bash
 # To View all Databases
