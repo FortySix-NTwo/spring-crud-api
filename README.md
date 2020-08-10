@@ -14,13 +14,43 @@ Spring Boot Users C.R.U.D. API, is implemented by the following Tech-Stack:
 
 ### NOTE
 
-In order to run a local MySQL Database instance you will need to use Docker with the following command
+> In order to run a local MySQL Database instance,
+> you will need to use Docker with the following command
 
 ```bash
 docker run -d -p 3306:3306 --name my-mysql \
 -v ~/mysql/scripts:/docker-entrypoint-initdb.d/ \
 -e MYSQL_ROOT_PASSWORD=supersecret \
 -e MYSQL_DATABASE=users mysql
+```
+
+> in order to execute bash commands within the docker instance,
+> within the terminal use the following commands
+
+```bash
+docker exec -it mysql bash
+# if successful you will see something to the effect of 'root@c86ff80d7524:/#', then enter:
+mysql -uroot -p
+# Which will prompt you to enter the root password as follows:
+password
+# if all successful you will be meet with the 'mysql>' command-line
+```
+
+> in order to view data stored within the database do use the following commands
+
+```bash
+# To View all Databases
+show databases;
+# Select the users Database
+use users;
+# Show Users Tables
+show tables;
+# Show Users Columns
+show columns from users;
+# Show all Stored Users in Table
+select * from users;
+# To Exit mysql command-line
+exit
 ```
 
 ### License
