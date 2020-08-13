@@ -1,7 +1,6 @@
 package org.fortysixntwo.user;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/users")
 public class UserController {
+    
     @Autowired
     private UserRepository userRepository;
 
@@ -23,25 +23,33 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public User GetUser(@PathVariable Integer id) {
-            return userRepository.findById(id).orElse(null);
+    @GetMapping("/{_id}")
+    public User GetUser(@PathVariable Integer _id) {
+        return userRepository
+            .findById(_id)
+            .orElseThrow(() -> new IllegalStateException("Invalid Credentials"));
     }
+    
     @PostMapping("/")
     public User PostUser(@RequestBody User user) {
         return userRepository.save(user);
     }
+
     @PutMapping("/")
     public User PutUser(@RequestBody User user) {
-        User oldUser = userRepository.findById(user.get_id()).orElse(null);
+        User oldUser = userRepository
+                .findById(user.get_id())
+                .orElseThrow(() -> new IllegalStateException("Invalid Credentials"));
+        
         oldUser.setUser_name(user.getUser_name());
         oldUser.setUser_email(user.getUser_email());
         oldUser.setUser_pass(user.getUser_pass());
         return userRepository.save(oldUser);
     }
-    @DeleteMapping("/{id}")
-    public Integer DeleteUser(@PathVariable Integer id) {
-        userRepository.deleteById(id);
-        return id;
+
+    @DeleteMapping("/{_id}")
+    public Integer DeleteUser(@PathVariable Integer _id) {
+        userRepository.deleteById(_id);
+        return _id;
     }
 }

@@ -7,10 +7,21 @@ Spring Boot Users C.R.U.D. API, is implemented by the following Tech-Stack:
 - Spring-Boot 2.3.1
 - Spring-Fox Swagger 2.9.2
 - Spring-Fox Swagger UI 2.9.2
+- Spring-Security
 - Lombok
 - Hibernate
 - MySQL 8
+- Google Guava
 - Docker
+
+### Spring Security Login
+
+> The login credentials are as follows:
+
+```text
+username: admin
+password: password
+```
 
 ### NOTE
 
