@@ -23,7 +23,7 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/{_id}")
+    @GetMapping(path = "/{_id}")
     public User GetUser(@PathVariable Integer _id) {
         return userRepository
             .findById(_id)
@@ -37,17 +37,17 @@ public class UserController {
 
     @PutMapping("/")
     public User PutUser(@RequestBody User user) {
-        User oldUser = userRepository
+        User updateUser = userRepository
                 .findById(user.get_id())
                 .orElseThrow(() -> new IllegalStateException("Invalid Credentials"));
         
-        oldUser.setUser_name(user.getUser_name());
-        oldUser.setUser_email(user.getUser_email());
-        oldUser.setUser_pass(user.getUser_pass());
-        return userRepository.save(oldUser);
+        updateUser.setUser_name(user.getUser_name());
+        updateUser.setUser_email(user.getUser_email());
+        updateUser.setUser_pass(user.getUser_pass());
+        return userRepository.save(updateUser);
     }
 
-    @DeleteMapping("/{_id}")
+    @DeleteMapping(path = "/{_id}")
     public Integer DeleteUser(@PathVariable Integer _id) {
         userRepository.deleteById(_id);
         return _id;
