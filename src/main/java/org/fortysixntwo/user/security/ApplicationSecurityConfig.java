@@ -30,9 +30,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .csrf().disable()
         .authorizeRequests()
-        .antMatchers("/swagger-ui.html").permitAll()
+        .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
         .antMatchers("/api/**").hasAuthority(ADMIN.name())
         .anyRequest()
         .authenticated()

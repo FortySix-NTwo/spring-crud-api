@@ -39,11 +39,11 @@ public class UserController {
         return userRepository.save(user);
     }
 
-    @PutMapping("/")
+    @PutMapping(path = "/{_id}")
     @PreAuthorize("hasAuthority('user:write')")
-    public User PutUser(@RequestBody User user) {
+    public User PutUser(@PathVariable Integer _id, @RequestBody User user) {
         User updateUser = userRepository
-                .findById(user.get_id())
+                .findById(_id)
                 .orElseThrow(() -> new IllegalStateException("Invalid Credentials"));
         
         updateUser.setUser_name(user.getUser_name());
