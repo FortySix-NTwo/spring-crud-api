@@ -19,8 +19,8 @@ Spring Boot Users C.R.U.D. API, is implemented by the following Tech-Stack:
 > The login credentials are as follows:
 
 ```text
-username: admin
-password: password
+username: FortySix-nTwo
+password: superSecret
 ```
 
 ### NOTE

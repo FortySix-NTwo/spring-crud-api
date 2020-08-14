@@ -1,20 +1,16 @@
 package org.fortysixntwo.user.security;
 
-import com.google.common.collect.Sets;
-import java.util.Set;
-import static org.fortysixntwo.user.security.ApplicationUserRole.*;
-
 public enum ApplicationUserRolePermissions {
-  USER(Sets.newHashSet()),
-  ADMIN(Sets.newHashSet(USER_READ, USER_WRITE));
+    USER_READ("user:read"),
+    USER_WRITE("user:write");
 
-  public final Set<ApplicationUserRole> permissions;
+    private final String permission;
 
-  ApplicationUserRolePermissions(Set<ApplicationUserRole> permissions) {
-    this.permissions = permissions;
-  }
+    ApplicationUserRolePermissions(String permission) {
+        this.permission = permission;
+    }
 
-  public Set<ApplicationUserRole> getPermissions() {
-    return permissions;
-  }
+    public String getPermission() {
+        return permission;
+    }
 }

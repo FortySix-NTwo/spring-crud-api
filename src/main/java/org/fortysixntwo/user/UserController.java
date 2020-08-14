@@ -2,6 +2,7 @@ package org.fortysixntwo.user;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/")
+    @PreAuthorize("hasAuthority('user:read')")
     public List<User> GetUsers() {
         return userRepository.findAll();
     }
 
     @GetMapping(path = "/{_id}")
+    @PreAuthorize("hasAuthority('user:read')")
     public User GetUser(@PathVariable Integer _id) {
         return userRepository
             .findById(_id)
@@ -31,11 +34,13 @@ public class UserController {
     }
     
     @PostMapping("/")
+    @PreAuthorize("hasAuthority('user:write')")
     public User PostUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
     @PutMapping("/")
+    @PreAuthorize("hasAuthority('user:write')")
     public User PutUser(@RequestBody User user) {
         User updateUser = userRepository
                 .findById(user.get_id())
@@ -48,6 +53,7 @@ public class UserController {
     }
 
     @DeleteMapping(path = "/{_id}")
+    @PreAuthorize("hasAuthority('user:write')")
     public Integer DeleteUser(@PathVariable Integer _id) {
         userRepository.deleteById(_id);
         return _id;
