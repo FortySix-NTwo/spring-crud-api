@@ -29,7 +29,7 @@ password: superSecret
 > you will need to use Docker with the following command
 
 ```bash
-docker run -d -p 3306:3306 --name my-mysql \
+docker run -d -p 3306:3306 --name mysql \
 -v ~/mysql/scripts:/docker-entrypoint-initdb.d/ \
 -e MYSQL_ROOT_PASSWORD=password \
 -e MYSQL_DATABASE=users mysql
